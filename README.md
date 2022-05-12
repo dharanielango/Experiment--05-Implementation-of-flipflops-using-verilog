@@ -1,9 +1,12 @@
 # Experiment--05-Implementation-of-flipflops-using-verilog
-### AIM: To implement all the flipflops using verilog and validating their functionality using their functional tables
-### HARDWARE REQUIRED:  – PC, Cyclone II , USB flasher
-### SOFTWARE REQUIRED:   Quartus prime
-### THEORY 
-SR Flip-Flop
+## AIM: 
+To implement all the flipflops using verilog and validating their functionality using their functional tables
+## HARDWARE REQUIRED:  
+ PC, Cyclone II , USB flasher
+## SOFTWARE REQUIRED:
+   Quartus prime
+## THEORY 
+### SR Flip-Flop
 SR flip-flop operates with only positive clock transitions or negative clock transitions. Whereas, SR latch operates with enable signal. The circuit diagram of SR flip-flop is shown in the following figure.
 
 ![image](https://user-images.githubusercontent.com/36288975/167910294-bb550548-b1dc-4cba-9044-31d9037d476b.png)
@@ -101,40 +104,122 @@ From the above characteristic table, we can directly write the next state equati
 Q(t+1)=T′Q(t)+TQ(t)′
 ⇒Q(t+1)=T⊕Q(t)
 
-### Procedure
-/* write all the steps invloved */
+## Procedure
+### Step 1:
+Open Quartus II and select new project and choose the file location.
 
+### Step 2:
+Module Declaration. Module should have the file name.
 
+### Step 3:
+Input-Output Delecaration.
 
-### PROGRAM 
+### Step 4:
+Use assign declaration and wire to define the functionality of logic circuits.
+
+### Step 5:
+At the end give endmodule.
+
+### Step 6:
+Run the program and choose RTL viewer to get RTL realization.
+
+## PROGRAM 
+```
 /*
 Program for flipflops  and verify its truth table in quartus using Verilog programming.
-Developed by: 
-RegisterNumber:  
+Developed by: DHARANI ELANGO
+RegisterNumber:  212221230021
 */
 
 
+*SR FLIPFLOP:
+
+module ex5(S,R,Clk,Q,Qbar);
+input S,R,Clk;
+output Q,Qbar;
+wire X,Y;
+nand(X,S,Clk);
+nand(Y,R,Clk);
+nand(Q,X,Qbar);
+nand(Qbar,Y,Q);
+endmodule
+
+*D(DELAY) FLIPFLOP:
+
+module ex5(D,Clk,Q,Qbar);
+input D,Clk;
+output Q,Qbar;
+assign Dbar= |D;
+wire X,Y;
+nand(X,D,Clk);
+nand(Y,Dbar,Clk);
+nand(Q,X,Qbar);
+nand(Qbar,Y,Q);
+endmodule
+
+*JK FLIPFLOP:
+
+module ex5(J,K,Clk,Q,Qbar);
+input J,K,Clk;
+output Q,Qbar;
+wire X,Y;
+nand(X,J,Clk,Qbar);
+nand(Y,K,Clk,Q);
+nand(Q,X,Qbar);
+nand(Qbar,Y,Q);
+endmodule
+
+
+
+*T(TOGGLE) FLIPFLOP:
+
+module ex5(T,Clk,Q,Qbar);
+input T,Clk;
+output Q,Qbar;
+wire X,Y;
+nand(X,T,Clk,Qbar);
+nand(Y,T,Clk,Q);
+nand(Q,X,Qbar);
+nand(Qbar,Y,Q);
+endmodule
+
+ 
+```
+
+
+## OUTPUT 
+## RTL LOGIC FOR FLIPFLOPS 
+### SR FLIP FLOP
+![OUTPUT](1.png)
+### D FLIP FLOP
+![OUTPUT](3.png)
+### JK FLIP FLOP 
+![OUTPUT](2.png)
+### T FLIP FLOP
+![OUTPUT](4.png)
 
 
 
 
-### RTL LOGIC FOR FLIPFLOPS 
+
+
+
+## TIMING DIGRAMS FOR FLIP FLOPS 
+ 
+### SR FLIP FLOP
+![OUTPUT](5.png)
+### D FLIP FLOP
+![OUTPUT](7.png)
+### JK FLIP FLOP 
+![OUTPUT](6.png)
+### T FLIP FLOP
+![OUTPUT](8.png)
 
 
 
 
+## RESULTS 
+All the flipflops are implementde using verilog and their functionality has been validated using their functional tables.
 
 
 
-
-
-### TIMING DIGRAMS FOR FLIP FLOPS 
-
-
-
-
-
-
-
-
-### RESULTS 
